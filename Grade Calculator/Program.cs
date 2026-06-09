@@ -1,4 +1,5 @@
 ﻿using Grade_Calculator.MathCalculator;
+using Grade_Calculator.ConditionsMethods;
 using System.Threading.Channels;
 namespace Grade_Calculator
 {
@@ -6,20 +7,17 @@ namespace Grade_Calculator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Calculator");
             int choice = 0;
-            object result = 0;
+            double result = 0;
 
             do
             {
-                Console.Write("Enter a number: ");
-                double num1 = Convert.ToDouble(Console.ReadLine());
-
-                Console.Write("Enter a number: ");
-                double num2 = Convert.ToDouble(Console.ReadLine());
-
-                Console.Write("Enter a number to what arithmetic will be used: ");
-                choice = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("============");
+                Console.WriteLine("=Calculator=");
+                Console.WriteLine("============");
+                double num1 = Conditions.GetValidNumberFromUser("Enter a number: ");
+                double num2 = Conditions.GetValidNumberFromUser("Enter another number: ");
+                choice = (int)Conditions.GetValidNumberFromUser("Enter a number for what arithmetic will be used: ");
                 switch (choice)
                 {
                     case 1:
@@ -35,14 +33,20 @@ namespace Grade_Calculator
                         Console.WriteLine($"The result is: {result}");
                         break;
                     case 4:
-                        result = BasicArithmetic.DivNumbers(num1, num2);
+                        double divisor = num2;
+                        while (divisor == 0)
+                        {
+                            Console.WriteLine("Error: Cannot divide by zero!");
+                            divisor = Conditions.GetValidNumberFromUser("Please enter a non-zero divisor: ");
+                        }
+                        result = BasicArithmetic.DivNumbers(num1, divisor);
                         Console.WriteLine($"The result is: {result}");
                         break;
                     default:
                         Console.WriteLine("Invalid Input!");
                         break;
                 }
-            } while (choice >= 4);
+            } while (choice != 0 || choice >= 4);
 
             //object result1 = Calculator.AddNumbers(num1, num2);
             //object result2 = Calculator.Subtraction(num1, num2);

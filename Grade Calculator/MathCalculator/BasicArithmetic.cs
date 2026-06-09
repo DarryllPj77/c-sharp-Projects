@@ -25,7 +25,7 @@ namespace Grade_Calculator.MathCalculator
         {
             if (b == 0)
             {
-                Console.WriteLine("Cannot divide by zero. Divisor must not be zero.");
+                throw new DivideByZeroException("Divisor must not be zero.");
             }
             return a / b;
         }
