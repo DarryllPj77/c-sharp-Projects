@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="c-sharp Simple Projects/c_sharp_Simple_Projects.csproj" />
   <Project Path="Grade Calculator/Grade Calculator.csproj" />
+  <Project Path="Zodiac Sign Finder/Zodiac Sign Finder.csproj" Id="4edc71b5-09f9-4324-869c-de7046af3306" />
 </Solution>
