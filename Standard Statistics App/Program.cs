@@ -59,14 +59,27 @@
                 Console.WriteLine(item);
             }
 
+            double[] mySortedData = StatCalculator.SortedValues(dataValues);
+
+            // 2. Use string.Join to easily print the entire array on one line
+            string formattedText = string.Join(", ", mySortedData);
+            Console.WriteLine($"\nSorted Data Set: {formattedText}");
+
+
             // Logic to get Mean of the data
-            double averageResult = StatCalculator.Mean(dataValues);
+            double averageResult = StatCalculator.Mean(mySortedData);
             Console.WriteLine($"\nThe Mean (Average) is: {averageResult}");
 
-            double medianResult = StatCalculator.Median(dataValues);
+            double medianResult = StatCalculator.Median(mySortedData);
             //Console.WriteLine(dataValues[(int)medianResult]);
             Console.WriteLine($"The Median is {medianResult}");
 
+            double rangeResult = StatCalculator.Range(mySortedData);
+            Console.WriteLine($"The Range is {rangeResult}");
+
+            StatCalculator.Largest_Smallest(dataValues, out double smallestValue, out double largestValue);
+            Console.WriteLine($"The Smallest value is {smallestValue}");
+            Console.WriteLine($"The Largest value is {largestValue}");
         }
     }
 }

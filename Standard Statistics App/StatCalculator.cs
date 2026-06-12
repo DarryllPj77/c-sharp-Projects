@@ -6,6 +6,20 @@ namespace Standard_Statistics_App
 {
     internal class StatCalculator
     {
+        public static double[] SortedValues(double[] values)
+        {
+            if (values == null || values.Length == 0)
+            {
+                return new double[0];
+            }
+
+            double[] sortedValues = (double[])values.Clone();
+            Array.Sort(sortedValues);
+
+
+            return sortedValues;
+        }
+
         public static double Mean(double[] values)
         {
             // Edge case: handle empty arrays to prevent division by zero
@@ -35,7 +49,6 @@ namespace Standard_Statistics_App
                 return 0;
             }
 
-            Array.Sort(values);
             int n = values.Length;
             
             if(n % 2 != 0)
@@ -50,5 +63,34 @@ namespace Standard_Statistics_App
                 return (middleLeft + middleRight) / 2.0;
             }
         }
+
+        public static double Range(double[] values)
+        {
+            if (values == null || values.Length == 0)
+            {
+                return 0;
+            }
+
+            double highestValue = values[values.Length - 1];
+            double lowestValue = values[0];
+
+            return (highestValue - lowestValue);
+        }
+
+        public static void Largest_Smallest(double[] values, out double small, out double large)
+        {
+            if(values == null || values.Length == 0)
+            {
+                small = 0;
+                large = 0;
+                return;
+            }
+
+            small = values[0];
+
+            large = values[values.Length - 1];
+
+        }
+
     }
 }
